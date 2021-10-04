@@ -11,8 +11,8 @@ public class MainBinary {
 	public static int[] bP;
 	
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("data/InPut_32_Casos.txt"));	
-		BufferedWriter bw = new BufferedWriter(new FileWriter("data/OutPut_Binary.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("32 Cases/input.txt"));	
+		BufferedWriter bw = new BufferedWriter(new FileWriter("32 Cases/outputBinary.txt"));
 		
 		System.out.println("Welcome to Exact Sum with Binary Search");
 		
@@ -25,9 +25,10 @@ public class MainBinary {
 			int N = Integer.parseInt(line);
 			bP = new int[N];
 			
+			line = br.readLine();
+			String[] parts;
+			parts = line.split(" ");
 			
-			line=br.readLine();
-			String[] parts= line.split(" ");
 			
 			for(int i = 0; i < N; i++) {
 				bP[i] = Integer.parseInt(parts[i]);
@@ -78,7 +79,7 @@ public class MainBinary {
 		
 		br.close();
 		bw.close();
-		System.out.println("OutPut_Binary.txt actualizado con " + c + " casos");
+		System.out.println("Se ha actualizado outputBinary.txt con " + c + " casos");
 		
 	}
 

@@ -13,10 +13,10 @@ public class MainSequencial {
 	public static int[] bP;
 	
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("data/InPut_32_Casos.txt"));	
-		BufferedWriter bw = new BufferedWriter(new FileWriter("data/OutPut_Sequential.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("32 Cases/input.txt"));	
+		BufferedWriter bw = new BufferedWriter(new FileWriter("data/outputSequential.txt"));
 		
-		System.out.println("Bienvenid@ a Exact Sum con Busqueda Secuencial");
+		System.out.println("Welcome to Exact Sum with Sequential Search");
 		
 		
 		String line= br.readLine();
@@ -81,7 +81,7 @@ public class MainSequencial {
 		
 		br.close();
 		bw.close();
-		System.out.println("OutPut_Sequential.txt actualizado con " + c + " casos");
+		System.out.println("Se ha actualizado outputSequential.txt con " + c + " casos");
 		
 	}
 	
