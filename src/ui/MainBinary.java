@@ -4,24 +4,22 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-//import java.io.BufferedWriter;
 import java.io.IOException;
-//import java.io.OutputStreamWriter;
 import java.util.Arrays;
 
-public class MainSequencial {
+public class MainBinary {
 	public static int[] bP;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("data/InPut_32_Casos.txt"));	
-		BufferedWriter bw = new BufferedWriter(new FileWriter("data/OutPut_Sequential.txt"));
+		BufferedWriter bw = new BufferedWriter(new FileWriter("data/OutPut_Binary.txt"));
 		
-		System.out.println("Bienvenid@ a Exact Sum con Busqueda Secuencial");
+		System.out.println("Welcome to Exact Sum with Binary Search");
 		
 		
 		String line= br.readLine();
 		int c = 0;
-		while(line!=null) {
+		while(line != null) {
 			c++;
 			
 			int N = Integer.parseInt(line);
@@ -31,8 +29,8 @@ public class MainSequencial {
 			line=br.readLine();
 			String[] parts= line.split(" ");
 			
-			for(int i=0; i < N; i++) {
-				bP[i]= Integer.parseInt(parts[i]);
+			for(int i = 0; i < N; i++) {
+				bP[i] = Integer.parseInt(parts[i]);
 			}
 			
 			Arrays.sort(bP);
@@ -40,18 +38,18 @@ public class MainSequencial {
 			line=br.readLine();
 			int money = Integer.parseInt(line);
 			
-			int book1=0;
-			int book2=0;
-			int count=0;
-			for(int i=0; i< N;i++) {
+			int book1 = 0;
+			int book2 = 0;
+			int count = 0;
+			for(int i = 0; i < N; i++) {
 
-				int numb = money - bP[i];
-				int pos= secuencialSearch(numb, i);
+				int numb = money-bP[i];
+				int pos= binarySearch(numb, i);
 				//System.out.println(pos);
 				int temp1=0;
 				int temp2=0;
 				if(pos>=0) {
-					if(bP[i] < bP[pos]) {
+					if(bP[i]< bP[pos]) {
 						temp1 = bP[i];
 						temp2 = bP[pos];
 					}else {
@@ -74,30 +72,34 @@ public class MainSequencial {
 
 			}
 			bw.write(c + ". Peter should buy books whose prices are "+book1+" and "+book2+".\n\n");
-			//System.out.println("Peter should buy books whose prices are "+book1+" and "+book2+".\n\n");
 			line=br.readLine();
 			line=br.readLine();
 		}
 		
 		br.close();
 		bw.close();
-		System.out.println("OutPut_Sequential.txt actualizado con " + c + " casos");
+		System.out.println("OutPut_Binary.txt actualizado con " + c + " casos");
 		
 	}
-	
-	public static int secuencialSearch(int num, int a){
 
+	public static int binarySearch(int num, int a){
 		int pos = -1;
-		for (int i=0; i < bP.length; i++) {
-			if (i!=a && bP[i]==num){
-                pos=i;
-                
-            }
+		int i = 0;
+		int j = bP.length-1;
+		
+		while(i<=j && pos < 0){
+	
+			int m= (i+j)/2;
+			
+			if(m!=a && bP[m]==num){
+				pos =m;
+			}else if(bP[m]>num){
+				j=m-1;
+			}else{
+				i=m+1;
+			}
 		}
 		return pos;
-
 	}
-	
+
 }
-
-
